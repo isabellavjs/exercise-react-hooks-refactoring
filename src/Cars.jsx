@@ -1,15 +1,29 @@
-// src/Cars.jsx
-
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import CarsContext from './context/CarsContext';
 import carBlue from './images/carBlue.jpeg';
 import carRed from './images/carRed.jpeg';
 import carYellow from './images/carYellow.jpeg';
 
-class Cars extends Component {
-  render() {
-    const { redCar, blueCar, yellowCar } = this.context.cars;
-    const { moveCar } = this.context;
+
+function Cars () {
+  const { moveCar, cars } = useContext(CarsContext);
+  const [redCar, setRedCar] = useState(false);
+  const [blueCar, setBlueCar] = useState(false);
+  const [yellowCar, setYellowCar] = useState(false);
+
+  const handleCar = () => {
+    if (cars.redCar) {
+      moveCar('redCar', !redCar);
+      setRedCar(false);
+    } else if (cars.blueCar) {
+      moveCar(blueCar);
+      setBlueCar(true);
+    } else if (cars.yellowCar) {
+      moveCar(yellowCar);
+      setYellowCar(true);
+    }
+  }
+
     return (
       <div>
         <div>
@@ -19,7 +33,7 @@ class Cars extends Component {
             alt="red car"
           />
           <button
-            onClick={() => moveCar('redCar', !redCar)}
+            onClick={handleCar}
             type="button"
           >
             Move
@@ -32,7 +46,7 @@ class Cars extends Component {
             alt="blue car"
           />
           <button
-            onClick={() => moveCar('blueCar', !blueCar)}
+            onClick={handleCar}
             type="button"
           >
             Move
@@ -45,7 +59,7 @@ class Cars extends Component {
             alt="yellow car"
           />
           <button
-            onClick={() => moveCar('yellowCar', !yellowCar)}
+            onClick={handleCar}
             type="button"
           >
             Move
@@ -53,9 +67,7 @@ class Cars extends Component {
         </div>
       </div>
     )
-  }
 };
 
-Cars.contextType = CarsContext;
 
 export default Cars;

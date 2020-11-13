@@ -1,16 +1,18 @@
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import CarsContext from './CarsContext';
 
 
 function Provider ({ children }) {
-  const [cars, setCars] = useState(false);
+  const [cars, setCars] = useState({
+    redCar: false,
+    blueCar: false,
+    yellowCar: false,
+  });
 
  const moveCar = (car, side) => {
     setCars({
-      cars: {
+      ...cars,
         [car]: side,
-      },
     });
   };
 
@@ -19,10 +21,6 @@ function Provider ({ children }) {
         {children}
       </CarsContext.Provider>
     );
-};
-
-Provider.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Provider;
