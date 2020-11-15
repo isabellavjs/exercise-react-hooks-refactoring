@@ -3,11 +3,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import Provider from './context/Provider';
+import CarsProvider from './context/CarsProvider';
+import SignalProvider from './context/SignalProvider';
 
 ReactDOM.render(
-  <Provider>
+  <SignalProvider>
+  <CarsProvider>
     <App />
-  </Provider>,
+  </CarsProvider>
+  </SignalProvider>,
   document.getElementById('root'),
 );

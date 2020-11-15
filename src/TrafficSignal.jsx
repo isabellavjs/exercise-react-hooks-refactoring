@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import CarsContext from './context/CarsContext';
+import React, { useContext } from 'react';
 import redSignal from './images/redSignal.jpeg';
 import yellowSignal from './images/yellowSignal.jpeg';
 import greenSignal from './images/greenSignal.jpeg';
+import SignalContext from './context/SignalContext';
 
 const renderSignal = (signalColor) => {
   if (signalColor === 'red') return redSignal;
@@ -11,10 +11,8 @@ const renderSignal = (signalColor) => {
   return null;
 };
 
-class TrafficSignal extends Component {
-  render() {
-    const { color } = this.context.signal;
-    const { changeSignal } = this.context;
+function TrafficSignal () {
+    const { color:SignalColor, changeSignal } = useContext(SignalContext);
     return (
       <div>
         <div className="button-container">
@@ -28,12 +26,9 @@ class TrafficSignal extends Component {
             Green
           </button>
         </div>
-        <img className="signal" src={renderSignal(color)} alt="" />
+        <img className="signal" src={renderSignal(SignalColor)} alt="" />
       </div>
     );
-  }
 };
-
-TrafficSignal.contextType = CarsContext;
 
 export default TrafficSignal;
