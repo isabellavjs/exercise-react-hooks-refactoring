@@ -3,9 +3,12 @@ import carBlue from './images/carBlue.jpeg';
 import carRed from './images/carRed.jpeg';
 import carYellow from './images/carYellow.jpeg';
 import CarsContext from './context/CarsContext';
+// import SignalContext from './context/SignalContext';
 
 function Cars () {
     const { red:redCar, blue:blueCar, yellow:yellowCar, moveCar } = useContext(CarsContext);
+    // const { isDisable, signalColor, setDisable } = useContext(SignalContext);
+    // console.log('set disable', isDisable);
     return (
       <div>
         <div>
@@ -15,8 +18,9 @@ function Cars () {
             alt="red car"
           />
           <button
-            onClick={() => moveCar('redCar', !redCar)}
+            onClick={() => moveCar('red', !redCar)}
             type="button"
+            // disabled={() => setDisable(signalColor)}
           >
             Move
         </button>
@@ -28,8 +32,9 @@ function Cars () {
             alt="blue car"
           />
           <button
-            onClick={() => moveCar('blueCar', !blueCar)}
+            onClick={() => moveCar('blue', !blueCar)}
             type="button"
+            // disabled={() => setDisable(signalColor)}
           >
             Move
         </button>
@@ -41,8 +46,9 @@ function Cars () {
             alt="yellow car"
           />
           <button
-            onClick={() => moveCar('yellowCar', !yellowCar)}
+            onClick={() => moveCar('yellow', !yellowCar)}
             type="button"
+            // disabled={() => setDisable(signalColor)}
           >
             Move
         </button>
